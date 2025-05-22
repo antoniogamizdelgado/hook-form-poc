@@ -20,14 +20,21 @@ export function FieldManagement() {
     },
   });
 
-  const { fields } = useFieldArray({
+  const { fields, append } = useFieldArray({
     control: methods.control,
     name: "fields",
   });
 
+  const handleAddRow = () => {
+    append({
+      ...defaultValues,
+      id: "field_" + Math.random().toString(36).substring(2, 15),
+    });
+  };
+
   return (
     <FormProvider {...methods}>
-      <Table fields={fields} />
+      <Table fields={fields} onAddRow={handleAddRow} />
       <DevTool control={methods.control} />
     </FormProvider>
   );
