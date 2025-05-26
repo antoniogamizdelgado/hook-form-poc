@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { defaultValues, Field, FieldSchema } from "./Field";
 import { z } from "zod";
-import { useFieldArray, useForm, useWatch } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 
 export type FieldsValues = {
   fields: Field[];
@@ -16,7 +16,7 @@ export const useFieldsController = () => {
     },
   });
 
-  const { append } = useFieldArray({
+  const { append, remove } = useFieldArray({
     control: methods.control,
     name: "fields",
   });
@@ -42,13 +42,21 @@ export const useFieldsController = () => {
     });
   };
 
+  const handleRemoveRow = (index: number) => {
+    if (methods.getValues("fields").length <= 1) {
+      return;
+    }
+    remove(index);
+  };
+
   return {
-    fields: useWatch({ control: methods.control, name: "fields" }),
+    fields: methods.watch("fields"),
     handlers: {
       handleAddRow,
       rowHandlers: {
         handleMandatoryChange,
         handleViewOnlyChange,
+        handleRemoveRow,
       },
     },
     methods,

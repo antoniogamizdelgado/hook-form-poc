@@ -28,7 +28,7 @@ export function FieldManagement() {
           availableTitles={availableTitles}
           availableSubtitles={availableSubtitles}
         />
-        {/* <DevTool control={objectParametersMethods.control} /> */}
+        <DevTool control={objectParametersMethods.control} />
       </FormProvider>
     </>
   );

@@ -1,5 +1,6 @@
 import React from "react";
-import { TableCell, TableRow as TableRowMui } from "@mui/material";
+import { TableCell, TableRow as TableRowMui, IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { BadgerTextField } from "../common/TextField";
 import { PicklistField } from "../common/PicklistField";
 import { Option } from "../common/Option";
@@ -64,6 +65,15 @@ export const TableRow: React.FC<Props> = ({ fieldId, index, handlers }) => {
             handlers.handleViewOnlyChange(index, value)
           }
         />
+      </TableCell>
+      <TableCell>
+        <IconButton
+          color="error"
+          onClick={() => handlers.handleRemoveRow(index)}
+          aria-label="Remove field"
+        >
+          <DeleteIcon />
+        </IconButton>
       </TableCell>
     </TableRowMui>
   );

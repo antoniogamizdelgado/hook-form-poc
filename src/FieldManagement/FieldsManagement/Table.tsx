@@ -32,13 +32,14 @@ export const Table: React.FC<TableProps> = ({ fields, handlers }) => {
               <TableCell>CRM API Name</TableCell>
               <TableCell>Mandatory</TableCell>
               <TableCell>View only</TableCell>
+              <TableCell>Actions</TableCell>
             </RowMui>
           </TableHead>
           <TableBody>
             {fields.map((field, index) => (
               <TableRow
                 fieldId={field.id}
-                key={index}
+                key={field.id}
                 index={index}
                 handlers={handlers.rowHandlers}
               />
