@@ -4,10 +4,12 @@ import { TextField, TextFieldProps } from "@mui/material";
 
 type Props<T extends FieldValues> = {
   name: Path<T>;
+  onCustomChange?: (value: string) => void;
 } & Pick<TextFieldProps, "label">;
 
 export function BadgerTextField<T extends FieldValues>({
   name,
+  onCustomChange,
   ...props
 }: Props<T>) {
   const { control } = useFormContext();
@@ -22,6 +24,12 @@ export function BadgerTextField<T extends FieldValues>({
           {...props}
           error={!!error}
           helperText={error?.message}
+          onChange={(e) => {
+            field.onChange(e);
+            if (onCustomChange) {
+              onCustomChange(e.target.value);
+            }
+          }}
         />
       )}
     />

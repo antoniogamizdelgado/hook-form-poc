@@ -1,3 +1,26 @@
+# Spike
+
+## TODO
+
+- Find a way to force the developer to specify a value for the generic type T of a component. Right now you can forget about it,
+and if you do, then TS cannot check the types in the form.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
