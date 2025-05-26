@@ -7,7 +7,7 @@ import {
   SelectProps,
 } from "@mui/material";
 
-import { Option } from "../types/Option";
+import { Option } from "./Option";
 
 type Props<T extends FieldValues> = {
   name: Path<T>;
@@ -19,6 +19,7 @@ export function PicklistField<T extends FieldValues>({
   name,
   options,
   label,
+  multiple,
   ...props
 }: Props<T>) {
   const { control } = useFormContext();
@@ -32,8 +33,9 @@ export function PicklistField<T extends FieldValues>({
           <InputLabel id={`${name}-label`}>{label}</InputLabel>
           <Select
             {...props}
+            multiple={multiple}
             labelId={`${name}-label`}
-            value={value || ""}
+            value={multiple ? value || [] : value || ""}
             onChange={onChange}
             inputRef={ref}
             label={label}

@@ -4,7 +4,7 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import { Autocomplete, Box, Checkbox, TextField } from "@mui/material";
 
-import { Option } from "../types/Option";
+import { Option } from "./Option";
 
 type Props<T extends FieldValues> = {
   name: Path<T>;

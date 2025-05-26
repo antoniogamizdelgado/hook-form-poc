@@ -1,14 +1,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { defaultValues, Field, FieldSchema } from "../types/Field";
+import { defaultValues, Field, FieldSchema } from "./Field";
 import { z } from "zod";
-import { useFieldArray, useForm } from "react-hook-form";
+import { useFieldArray, useForm, useWatch } from "react-hook-form";
 
-export type FormValues = {
+export type FieldsValues = {
   fields: Field[];
 };
 
-export const useFormController = () => {
-  const methods = useForm<FormValues>({
+export const useFieldsController = () => {
+  const methods = useForm<FieldsValues>({
     mode: "all",
     resolver: zodResolver(z.object({ fields: z.array(FieldSchema) })),
     defaultValues: {
@@ -16,7 +16,7 @@ export const useFormController = () => {
     },
   });
 
-  const { fields, append } = useFieldArray({
+  const { append } = useFieldArray({
     control: methods.control,
     name: "fields",
   });
@@ -43,7 +43,7 @@ export const useFormController = () => {
   };
 
   return {
-    fields,
+    fields: useWatch({ control: methods.control, name: "fields" }),
     handlers: {
       handleAddRow,
       rowHandlers: {
@@ -55,6 +55,6 @@ export const useFormController = () => {
   };
 };
 
-export type Handlers = ReturnType<typeof useFormController>["handlers"];
+export type Handlers = ReturnType<typeof useFieldsController>["handlers"];
 
 export type RowHandlers = Handlers["rowHandlers"];

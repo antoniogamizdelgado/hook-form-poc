@@ -2,9 +2,9 @@ import React from "react";
 import { TableCell, TableRow as TableRowMui } from "@mui/material";
 import { BadgerTextField } from "../common/TextField";
 import { PicklistField } from "../common/PicklistField";
-import { Option } from "../types/Option";
+import { Option } from "../common/Option";
 import { BadgerCheckbox } from "../common/Checkbox";
-import { FormValues, RowHandlers } from "../Form/FormController";
+import { FieldsValues, RowHandlers } from "./FieldsController";
 
 export type Props = {
   fieldId: string;
@@ -25,32 +25,32 @@ export const TableRow: React.FC<Props> = ({ fieldId, index, handlers }) => {
   return (
     <TableRowMui key={fieldId}>
       <TableCell>
-        <BadgerTextField<FormValues>
+        <BadgerTextField<FieldsValues>
           name={`fields.${index}.badgerLabel` as const}
           label="Badger Label"
         />
       </TableCell>
       <TableCell>
-        <BadgerTextField<FormValues>
+        <BadgerTextField<FieldsValues>
           name={`fields.${index}.badgerAPIName` as const}
           label="Badger API Name"
         />
       </TableCell>
       <TableCell>
-        <PicklistField<FormValues>
+        <PicklistField<FieldsValues>
           name={`fields.${index}.badgerFieldType` as const}
           options={badgerFieldTypeOptions}
           label="Badger Field Type"
         />
       </TableCell>
       <TableCell>
-        <BadgerTextField<FormValues>
+        <BadgerTextField<FieldsValues>
           name={`fields.${index}.crmAPIName` as const}
           label="CRM API Name"
         />
       </TableCell>
       <TableCell>
-        <BadgerCheckbox<FormValues>
+        <BadgerCheckbox<FieldsValues>
           name={`fields.${index}.isMandatory` as const}
           onCustomChange={(value) =>
             handlers.handleMandatoryChange(index, value)
@@ -58,7 +58,7 @@ export const TableRow: React.FC<Props> = ({ fieldId, index, handlers }) => {
         />
       </TableCell>
       <TableCell>
-        <BadgerCheckbox<FormValues>
+        <BadgerCheckbox<FieldsValues>
           name={`fields.${index}.isViewOnly` as const}
           onCustomChange={(value) =>
             handlers.handleViewOnlyChange(index, value)

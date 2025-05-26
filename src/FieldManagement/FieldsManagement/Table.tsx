@@ -10,9 +10,9 @@ import {
   Button,
   Box,
 } from "@mui/material";
-import { Field } from "../types/Field";
+import { Field } from "./Field";
 import { TableRow } from "./TableRow";
-import { Handlers } from "../Form/FormController";
+import { Handlers } from "./FieldsController";
 
 type TableProps = {
   fields: Field[];

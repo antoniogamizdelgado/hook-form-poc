@@ -1,4 +1,4 @@
-import { FieldManagement } from "./FieldManagement/FieldManagement";
+import { FieldManagement } from "./FieldManagement/IntegrationConfigurationComponent";
 
 function App() {
   return (
