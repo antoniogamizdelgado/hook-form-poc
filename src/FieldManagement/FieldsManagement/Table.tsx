@@ -26,6 +26,7 @@ export const Table: React.FC<TableProps> = ({ fields, handlers }) => {
         <MuiTable sx={{ minWidth: 650 }} aria-label="field mapping table">
           <TableHead>
             <RowMui>
+              <TableCell>Order</TableCell>
               <TableCell>Badger Label</TableCell>
               <TableCell>Badger API Name</TableCell>
               <TableCell>Badger Field Type</TableCell>
@@ -42,6 +43,7 @@ export const Table: React.FC<TableProps> = ({ fields, handlers }) => {
                 key={field.id}
                 index={index}
                 handlers={handlers.rowHandlers}
+                totalFields={fields.length}
               />
             ))}
           </TableBody>

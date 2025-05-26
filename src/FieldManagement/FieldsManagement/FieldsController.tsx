@@ -16,7 +16,7 @@ export const useFieldsController = () => {
     },
   });
 
-  const { append, remove } = useFieldArray({
+  const { append, remove, move } = useFieldArray({
     control: methods.control,
     name: "fields",
   });
@@ -49,6 +49,32 @@ export const useFieldsController = () => {
     remove(index);
   };
 
+  const handleMoveUp = (index: number) => {
+    if (index > 0) {
+      move(index, index - 1);
+    }
+  };
+
+  const handleMoveDown = (index: number) => {
+    const fields = methods.getValues("fields");
+    if (index < fields.length - 1) {
+      move(index, index + 1);
+    }
+  };
+
+  const handleReorder = (fromIndex: number, toIndex: number) => {
+    const fields = methods.getValues("fields");
+    if (
+      fromIndex >= 0 &&
+      fromIndex < fields.length &&
+      toIndex >= 0 &&
+      toIndex < fields.length &&
+      fromIndex !== toIndex
+    ) {
+      move(fromIndex, toIndex);
+    }
+  };
+
   return {
     fields: methods.watch("fields"),
     handlers: {
@@ -57,6 +83,9 @@ export const useFieldsController = () => {
         handleMandatoryChange,
         handleViewOnlyChange,
         handleRemoveRow,
+        handleMoveUp,
+        handleMoveDown,
+        handleReorder,
       },
     },
     methods,
